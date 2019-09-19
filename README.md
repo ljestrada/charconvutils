@@ -1,12 +1,12 @@
 # charconvutils
 C++17 sports two low-level character conversion functions, [std::from_chars](https://en.cppreference.com/w/cpp/utility/from_chars) and  [std::to_chars](https://en.cppreference.com/w/cpp/utility/to_chars), but they have a usage model that can be easily improved using the power of templates.
 
-charconvutils provides a set of function templates that wrap `std::from_chars` and `std::to_chars` functions, but provides additional flexibility for C-style strings, requiring to pass only the array. Furthermore, standard containers that maintain their elements in contigious storage and provide a `data()` member function are supported, too.
+charconvutils provides a set of function templates that wrap the `std::from_chars` and `std::to_chars` functions, but provides additional flexibility for C-style strings, requiring to pass only the array. Furthermore, standard containers that maintain their elements in contiguous storage and provide a `data()` member function are supported, too.
 ## Requirements
 charconvutils requires a C++17 compliant compiler with support for character conversion.
 
 ## Examples
-The following examples illustrates different usage scenarios.  Notice that similar to `std::to_chars`, `charconvutils::to_chars` will return a non-NTBS (null-terminated byte stream). If the conversion succeeds and it will be used in a scenario that requires a NTBS, you can use any of the following techniques.
+The following examples illustrate different usage scenarios.  Notice that similar to `std::to_chars`, `charconvutils::to_chars` will return a non-NTBS (null-terminated byte stream). If the conversion succeeds and it will be used in a scenario that requires a NTBS, you can use any of the following techniques.
 * Overallocate the output buffer by one (or more) elements and fill the buffer with `'\0'`. This is useful when you have a very good idea how many bytes will be needed to hold the result.
 *  Terminate the output buffer by setting the `ptr` member of the resulting `std::to_chars_result` to `'\0'` as follows: `*result.ptr = '\0'`.
 * Use a container with a small number of elements and loop, incrementing its size until the conversion succeeds.
