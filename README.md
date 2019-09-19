@@ -42,12 +42,12 @@ Notice that the `buffer` `std::array` is initialized with `'\0'`s and has an ext
 #include <array>
 
 int main() {
-	std::array<char, 7> a{ '8', '6', '7', '5', '3', '0', '9' };
-	unsigned int value;
+  std::array<char, 7> a{ '8', '6', '7', '5', '3', '0', '9' };
+  unsigned int value;
 
-	if (auto [ptr, ec] = charconvutils::from_chars(a, value); ec != std::errc{}) {
-		// CONVERSION FAILED
-	}
+  if (auto [ptr, ec] = charconvutils::from_chars(a, value); ec != std::errc{}) {
+    // CONVERSION FAILED
+  }
 
   std::array<char, 8> buffer{}; // initialize array with '\0's
   unsigned int input{8675309};
